@@ -14,15 +14,12 @@ namespace TicketManagementSystem
 
             using var context = new AppDbContext();
 
-            // Ensure database is created
             context.Database.EnsureCreated();
 
-            // Repositories
             var customerRepo = new CustomerRepository(context);
             var eventRepo = new EventRepository(context);
             var ticketRepo = new TicketRepository(context);
 
-            // Services
             var customerService = new CustomerService(customerRepo);
             var eventService = new EventService(eventRepo);
             var ticketService = new TicketService(ticketRepo);
@@ -312,7 +309,6 @@ namespace TicketManagementSystem
         {
             Console.WriteLine("\n=== BİLET REZERV ET ===");
 
-            // Show available events
             var events = _eventService.GetAll();
             if (!events.Any())
             {
@@ -326,7 +322,6 @@ namespace TicketManagementSystem
 
             var eventName = GetInput("\nTədbir adı");
 
-            // Show customers
             var customers = _customerService.GetAll();
             if (!customers.Any())
             {
